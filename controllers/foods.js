@@ -1,5 +1,3 @@
-// controllers/foods.js
-
 const express = require("express");
 const router = express.Router();
 
@@ -9,13 +7,9 @@ router.get("/", async (req, res) => {
   try {
     const current = await User.findById(req.session.user._id);
 
-    if (current) {
-      res.render("foods/index.ejs", {
-        foods: current.pantry,
-      });
-    } else {
-      res.send("There are no items in this pantry");
-    }
+    res.render("foods/index.ejs", {
+      foods: current.pantry,
+    });
   } catch (error) {
     console.log(error);
     res.redirect("/");

@@ -10,6 +10,7 @@ const isSignedIn = require("./middleware/is-signed-in.js");
 const passUserToView = require("./middleware/pass-user-to-view.js");
 const authController = require("./controllers/auth.js");
 const foodsController = require("./controllers/foods.js");
+const usersController = require("./controllers/user.js");
 const port = process.env.PORT ? process.env.PORT : "3000";
 
 mongoose.connect(process.env.MONGODB_URI);
@@ -47,6 +48,7 @@ app.use(passUserToView);
 app.use("/auth", authController);
 app.use(isSignedIn);
 app.use("/users/:userId/foods", foodsController);
+app.use("/users", usersController);
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
